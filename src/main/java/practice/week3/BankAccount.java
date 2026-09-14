@@ -26,7 +26,7 @@ public class BankAccount {
 
     /** Creates an account with a zero balance. */
     public BankAccount(String owner) {
-        throw new UnsupportedOperationException("TODO");
+        this(owner, 0);
     }
 
     /**
@@ -35,36 +35,53 @@ public class BankAccount {
      * @throws IllegalArgumentException if initialBalanceCents is negative
      */
     public BankAccount(String owner, long initialBalanceCents) {
-        throw new UnsupportedOperationException("TODO");
+        if (initialBalanceCents < 0) {
+            throw new IllegalArgumentException("initial balance must be >= 0");
+        }
+        this.owner = owner;
+        this.balanceCents = initialBalanceCents;
     }
 
     public String getOwner() {
-        throw new UnsupportedOperationException("TODO");
+        return owner;
     }
 
     public long getBalanceCents() {
-        throw new UnsupportedOperationException("TODO");
+        return balanceCents;
     }
 
     /** History entries look like "DEPOSIT 500" or "WITHDRAW 200", oldest first. */
     public List<String> getHistory() {
-        throw new UnsupportedOperationException("TODO");
+        return new ArrayList<>(history);
     }
 
     public void deposit(long amountCents) {
-        throw new UnsupportedOperationException("TODO");
+        if (amountCents <= 0) {
+            throw new IllegalArgumentException("deposit must be positive");
+        }
+        balanceCents += amountCents;
+        history.add("DEPOSIT " + amountCents);
     }
 
     public void withdraw(long amountCents) throws InsufficientFundsException {
-        throw new UnsupportedOperationException("TODO");
+        if (amountCents <= 0) {
+            throw new IllegalArgumentException("withdrawal must be positive");
+        }
+        if (amountCents > balanceCents) {
+            throw new InsufficientFundsException(
+                    "cannot withdraw " + amountCents + " from balance " + balanceCents);
+        }
+        balanceCents -= amountCents;
+        history.add("WITHDRAW " + amountCents);
     }
 
     public void transferTo(BankAccount other, long amountCents) throws InsufficientFundsException {
-        throw new UnsupportedOperationException("TODO");
+        withdraw(amountCents);
+        other.deposit(amountCents);
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("TODO");
+        return "Account[owner=" + owner + ", balanceCents=" + balanceCents + "]";
     }
 }

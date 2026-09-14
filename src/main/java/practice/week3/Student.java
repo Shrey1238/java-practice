@@ -21,39 +21,52 @@ public class Student implements Comparable<Student> {
     private final double gpa;
 
     public Student(int id, String name, double gpa) {
-        throw new UnsupportedOperationException("TODO");
+        this.id = id;
+        this.name = name;
+        this.gpa = gpa;
     }
 
     public int getId() {
-        throw new UnsupportedOperationException("TODO");
+        return id;
     }
 
     public String getName() {
-        throw new UnsupportedOperationException("TODO");
+        return name;
     }
 
     public double getGpa() {
-        throw new UnsupportedOperationException("TODO");
+        return gpa;
     }
 
     @Override
     public boolean equals(Object o) {
-        throw new UnsupportedOperationException("TODO");
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Student)) {
+            return false;
+        }
+        Student other = (Student) o;
+        return id == other.id;
     }
 
     @Override
     public int hashCode() {
-        throw new UnsupportedOperationException("TODO");
+        return Objects.hash(id);
     }
 
     @Override
     public int compareTo(Student other) {
-        throw new UnsupportedOperationException("TODO");
+        int byGpa = Double.compare(other.gpa, this.gpa);
+        if (byGpa != 0) {
+            return byGpa;
+        }
+        return this.name.compareTo(other.name);
     }
 
     /** "Student[id=1, name=Alice, gpa=3.9]" */
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("TODO");
+        return "Student[id=" + id + ", name=" + name + ", gpa=" + gpa + "]";
     }
 }

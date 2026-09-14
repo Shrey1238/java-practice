@@ -23,12 +23,25 @@ public class Collections {
 
     /** Returns a new list with only the even numbers, in the original order. */
     public static List<Integer> evens(List<Integer> numbers) {
-        throw new UnsupportedOperationException("TODO");
+        List<Integer> out = new ArrayList<>();
+        for (int n : numbers) {
+            if (n % 2 == 0) {
+                out.add(n);
+            }
+        }
+        return out;
     }
 
     /** Returns a new list with duplicates removed, keeping the FIRST occurrence of each. [3,1,3,2,1] -> [3,1,2]. */
     public static List<Integer> removeDuplicates(List<Integer> numbers) {
-        throw new UnsupportedOperationException("TODO");
+        Set<Integer> seen = new HashSet<>();
+        List<Integer> out = new ArrayList<>();
+        for (int n : numbers) {
+            if (seen.add(n)) {
+                out.add(n);
+            }
+        }
+        return out;
     }
 
     /**
@@ -37,7 +50,14 @@ public class Collections {
      * "the cat and the hat" -> {the=2, cat=1, and=1, hat=1}
      */
     public static Map<String, Integer> wordFrequency(String text) {
-        throw new UnsupportedOperationException("TODO");
+        Map<String, Integer> counts = new HashMap<>();
+        if (text.trim().isEmpty()) {
+            return counts;
+        }
+        for (String word : text.toLowerCase().split(" ")) {
+            counts.put(word, counts.getOrDefault(word, 0) + 1);
+        }
+        return counts;
     }
 
     /**
@@ -46,7 +66,21 @@ public class Collections {
      * @throws IllegalArgumentException if the list is empty
      */
     public static int mostCommon(List<Integer> numbers) {
-        throw new UnsupportedOperationException("TODO");
+        if (numbers.isEmpty()) {
+            throw new IllegalArgumentException("list is empty");
+        }
+        Map<Integer, Integer> counts = new HashMap<>();
+        int best = numbers.get(0);
+        int bestCount = 0;
+        for (int n : numbers) {
+            int c = counts.getOrDefault(n, 0) + 1;
+            counts.put(n, c);
+            if (c > bestCount) {
+                bestCount = c;
+                best = n;
+            }
+        }
+        return best;
     }
 
     /**
@@ -56,7 +90,14 @@ public class Collections {
      * try it with containsKey first so you understand what it's doing.
      */
     public static Map<Integer, List<String>> groupByLength(List<String> words) {
-        throw new UnsupportedOperationException("TODO");
+        Map<Integer, List<String>> groups = new HashMap<>();
+        for (String w : words) {
+            if (!groups.containsKey(w.length())) {
+                groups.put(w.length(), new ArrayList<>());
+            }
+            groups.get(w.length()).add(w);
+        }
+        return groups;
     }
 
     /**
@@ -66,7 +107,14 @@ public class Collections {
      * This is LeetCode #1 ("Two Sum") — the most famous interview question there is.
      */
     public static boolean hasPairWithSum(List<Integer> numbers, int target) {
-        throw new UnsupportedOperationException("TODO");
+        Set<Integer> seen = new HashSet<>();
+        for (int n : numbers) {
+            if (seen.contains(target - n)) {
+                return true;
+            }
+            seen.add(n);
+        }
+        return false;
     }
 
     /**
@@ -75,7 +123,23 @@ public class Collections {
      * Don't just concatenate and sort — walk both lists with two indexes ("two pointers").
      */
     public static List<Integer> mergeSorted(List<Integer> a, List<Integer> b) {
-        throw new UnsupportedOperationException("TODO");
+        List<Integer> out = new ArrayList<>();
+        int i = 0;
+        int j = 0;
+        while (i < a.size() && j < b.size()) {
+            if (a.get(i) <= b.get(j)) {
+                out.add(a.get(i++));
+            } else {
+                out.add(b.get(j++));
+            }
+        }
+        while (i < a.size()) {
+            out.add(a.get(i++));
+        }
+        while (j < b.size()) {
+            out.add(b.get(j++));
+        }
+        return out;
     }
 
     /**
@@ -83,6 +147,13 @@ public class Collections {
      * [1, 2, 2, 3] & [2, 3, 4] -> [2, 3]
      */
     public static Set<Integer> intersection(List<Integer> a, List<Integer> b) {
-        throw new UnsupportedOperationException("TODO");
+        Set<Integer> inA = new HashSet<>(a);
+        Set<Integer> out = new HashSet<>();
+        for (int n : b) {
+            if (inA.contains(n)) {
+                out.add(n);
+            }
+        }
+        return out;
     }
 }

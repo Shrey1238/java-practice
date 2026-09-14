@@ -15,12 +15,16 @@ public class Basics {
 
     /** Returns true if n is even. Negative numbers count too (-4 is even). */
     public static boolean isEven(int n) {
-        throw new UnsupportedOperationException("TODO");
+        return n % 2 == 0;
     }
 
     /** Returns the sum of all elements. Empty array returns 0. */
     public static int sum(int[] numbers) {
-        throw new UnsupportedOperationException("TODO");
+        int total = 0;
+        for (int n : numbers) {
+            total += n;
+        }
+        return total;
     }
 
     /**
@@ -29,12 +33,24 @@ public class Basics {
      * @throws IllegalArgumentException if the array is empty
      */
     public static int max(int[] numbers) {
-        throw new UnsupportedOperationException("TODO");
+        if (numbers.length == 0) {
+            throw new IllegalArgumentException("array is empty");
+        }
+        int best = numbers[0];
+        for (int i = 1; i < numbers.length; i++) {
+            if (numbers[i] > best) {
+                best = numbers[i];
+            }
+        }
+        return best;
     }
 
     /** Returns the average as a double. Empty array returns 0.0. Watch out for integer division! */
     public static double average(int[] numbers) {
-        throw new UnsupportedOperationException("TODO");
+        if (numbers.length == 0) {
+            return 0.0;
+        }
+        return (double) sum(numbers) / numbers.length;
     }
 
     /**
@@ -43,7 +59,14 @@ public class Basics {
      * @throws IllegalArgumentException if n is negative
      */
     public static long factorial(int n) {
-        throw new UnsupportedOperationException("TODO");
+        if (n < 0) {
+            throw new IllegalArgumentException("n must be >= 0");
+        }
+        long result = 1;
+        for (int i = 2; i <= n; i++) {
+            result *= i;
+        }
+        return result;
     }
 
     /**
@@ -51,7 +74,15 @@ public class Basics {
      * 0 and 1 are not prime. Negative numbers are not prime.
      */
     public static boolean isPrime(int n) {
-        throw new UnsupportedOperationException("TODO");
+        if (n < 2) {
+            return false;
+        }
+        for (int i = 2; (long) i * i <= n; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -62,17 +93,32 @@ public class Basics {
      *  - otherwise            -> the number as a String, e.g. "7"
      */
     public static String fizzBuzz(int n) {
-        throw new UnsupportedOperationException("TODO");
+        if (n % 15 == 0) {
+            return "FizzBuzz";
+        }
+        if (n % 3 == 0) {
+            return "Fizz";
+        }
+        if (n % 5 == 0) {
+            return "Buzz";
+        }
+        return String.valueOf(n);
     }
 
     /** Converts Celsius to Fahrenheit: F = C * 9/5 + 32. Careful with integer division again. */
     public static double celsiusToFahrenheit(double celsius) {
-        throw new UnsupportedOperationException("TODO");
+        return celsius * 9.0 / 5.0 + 32;
     }
 
     /** Returns how many elements are greater than {@code threshold}. */
     public static int countGreaterThan(int[] numbers, int threshold) {
-        throw new UnsupportedOperationException("TODO");
+        int count = 0;
+        for (int n : numbers) {
+            if (n > threshold) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -80,6 +126,10 @@ public class Basics {
      * Do NOT modify the input array.
      */
     public static int[] reversed(int[] numbers) {
-        throw new UnsupportedOperationException("TODO");
+        int[] out = new int[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            out[i] = numbers[numbers.length - 1 - i];
+        }
+        return out;
     }
 }
