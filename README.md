@@ -8,9 +8,12 @@ you when you've got it right.
 
 1. Install a JDK 17 or newer — [Adoptium Temurin](https://adoptium.net/) is the easy choice.
    Check with `java -version`.
-2. Install [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/) (free).
-3. Clone this repo and open the folder in IntelliJ. It will detect `pom.xml` and download
-   JUnit automatically (this needs internet the first time).
+2. Pick an editor — either works:
+   - **VS Code**: install the [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack).
+   - **IntelliJ IDEA Community** (free): https://www.jetbrains.com/idea/download/
+3. Clone this repo and open the folder. Both editors detect `pom.xml` and download JUnit
+   automatically (this needs internet the first time). In VS Code, wait for
+   "Java: Ready" in the bottom status bar before opening a test.
 
 You do **not** need to install Maven — `./mvnw` (Mac/Linux) or `mvnw.cmd` (Windows) downloads it for you.
 
@@ -26,9 +29,9 @@ From the terminal, in the repo folder:
 
 On Windows use `mvnw.cmd` instead of `./mvnw`.
 
-In IntelliJ: open a test file, click the green ▶ next to the class or a single method.
-**Use the debugger** (the bug icon) when a test fails and you don't know why — set a
-breakpoint in your method and step through it line by line.
+In VS Code or IntelliJ: open a test file and click the green ▶ next to the class or a
+single method. **Use the debugger** (the bug icon / "Debug Test") when a test fails and
+you don't know why — set a breakpoint in your method and step through it line by line.
 
 ## The exercises
 
